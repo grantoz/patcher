@@ -11,7 +11,7 @@ function App() {
       </header>
 
       <section className="tableSection">
-        <Table schema={sampleSchema} data={sampleData} color='blue' />
+        <Table schema={sampleSchema} data={sampleData} />
       </section>
     </div>
   );
