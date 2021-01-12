@@ -4,9 +4,7 @@ import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
 export default function Table ({schema, data}) {
-  //console.log(typeof data);
-  data = data()
-  //console.log(typeof data);
+  data = data() // this probably sucks a bit, but for now, get the test data from the test data function
 
   // it's ok to pass [] here, later perhaps show first page of DB results
   const [filteredItems, setfilteredItems] = React.useState(data)
@@ -19,13 +17,10 @@ export default function Table ({schema, data}) {
   }
 
   const filterItems = (e) => {
-    // const current = [...data]
-
     const {dataset} = e.target
     const value = e.target.value
 
     alterHeaderState(dataset.attribute, value)
-    // console.log(headerState)
 
     const resultSets = []
     for (let attribute in headerState) {
@@ -35,7 +30,6 @@ export default function Table ({schema, data}) {
       })
       resultSets.push(matching);
     }
-    //console.log(resultSets)
 
     // special case for only one filter column selected, no matching to do
     if (resultSets.length === 1) {
