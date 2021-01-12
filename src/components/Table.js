@@ -8,41 +8,68 @@ export default function Table ({schema, data}) {
   data = data()
   //console.log(typeof data);
 
+  // it's ok to pass [] here, later perhaps show first page of DB results
   const [filteredItems, setfilteredItems] = React.useState(data)
+  const [headerState, setHeaderState] = React.useState({})
+
+  const alterHeaderState = (attr, value) => {
+    const state = headerState
+    state[attr] = value
+    setHeaderState(state)
+  }
 
   const filterItems = (e) => {
-    const current = [...data]
+    // const current = [...data]
 
     const {dataset} = e.target
-    // console.log(dataset.attribute)
+    const value = e.target.value
 
-    const regex = new RegExp(e.target.value, 'i')
+    alterHeaderState(dataset.attribute, value)
+    // console.log(headerState)
 
-    // this is where we will pass off to the DB / ORM etc
-    const matching = current.filter(row => {
+    const resultSets = []
+    for (let attribute in headerState) {
+      const regex = new RegExp(headerState[attribute], 'i')
+      const matching = data.filter(row => {
+        return row[attribute].match(regex) 
+      })
+      resultSets.push(matching);
+    }
+    //console.log(resultSets)
 
-      // newer: filter by this column only
-      return row[dataset.attribute].match(regex) 
+    // special case for only one filter column selected, no matching to do
+    if (resultSets.length === 1) {
+      setfilteredItems(resultSets[0])
+    }
 
-      // older: check all values in all rows
-      /*for (let key in row) {
-        if (row[key].match(regex)) {
-          return true;
-        }
-      }*/
-      // return false;
+    // otherwise let's compute the intersection between the column result sets
+    let matchIds = resultSets[0].map(row => row._id)
+
+    // we already have the ids from the first column so no need to process the first columns again
+    resultSets.shift()
+
+    // intersection with previous column in result set
+    resultSets.forEach(set => {
+      const ids = set.map(row => row._id)
+      matchIds = matchIds.filter(x => ids.includes(x));
     })
 
-    setfilteredItems(matching)
+    const filtered = data.filter(row => matchIds.includes(row._id))
+
+    setfilteredItems(filtered)
+  }
+
+  const getHeaderState = (attr) => {
+    if (headerState.hasOwnProperty(attr)) {
+      return headerState[attr]
+    }
+    return ''
   }
 
   return (
     <table>
-      <TableHeader schema={schema} filterItems={filterItems} />
+      <TableHeader schema={schema} getHeaderState={getHeaderState} filterItems={filterItems} />
       <TableBody schema={schema} data={filteredItems} />
       </table>
-    /*<button className={props.color} onClick={() => props.setColor(props.color)}>
-      {props.color}
-    </button>*/
   )
 }
