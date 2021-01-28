@@ -3,7 +3,7 @@ import sampleData from './data/sampleData';
 import Table from './components/Table'
 
 function App() {
-  const sampleSchema = Object.keys(sampleData()[0]);
+  const schema = Object.keys(sampleData()[0]);
   return (
     <div className="App">
       <header className="App-header">
@@ -11,7 +11,7 @@ function App() {
       </header>
 
       <section className="tableSection">
-        <Table schema={sampleSchema} data={sampleData} />
+        <Table schema={schema} data={sampleData} />
       </section>
     </div>
   );
