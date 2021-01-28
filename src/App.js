@@ -1,13 +1,13 @@
 import './App.css';
 import sampleData from './data/sampleData';
-import sampleSchema from './data/sampleSchema';
 import Table from './components/Table'
 
 function App() {
+  const sampleSchema = Object.keys(sampleData()[0]);
   return (
     <div className="App">
       <header className="App-header">
-        blah
+        Something interesting to go here
       </header>
 
       <section className="tableSection">

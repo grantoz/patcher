@@ -4,4 +4,8 @@ Just a basic little React-based data filtering app for learning's sake, and for 
 
 Some of my tunes can be found on [Soundcloud](https://soundcloud.com/grantoz).
 
-TODO: saving data, connecting to suitable DB, perhaps wrapping it up in an electron app.
+TODO:
+
+* saving data (probably to typicode/lowdb)
+* optionally: connecting to suitable DB
+* perhaps wrapping it up in an electron app.
