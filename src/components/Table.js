@@ -4,8 +4,6 @@ import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
 export default function Table ({schema, data}) {
-  data = data() // this probably sucks a bit, but for now, get the test data from the test data function
-
   // it's ok to pass [] here, later perhaps show first page of DB results
   const [filteredItems, setfilteredItems] = React.useState(data)
   const [headerState, setHeaderState] = React.useState({})

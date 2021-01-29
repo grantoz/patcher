@@ -3,7 +3,7 @@ import sampleData from './data/sampleData';
 import Table from './components/Table'
 
 function App() {
-  const schema = Object.keys(sampleData()[0]);
+  const schema = Object.keys(sampleData[0]);
   return (
     <div className="App">
       <header className="App-header">
