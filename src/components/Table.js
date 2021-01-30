@@ -9,22 +9,19 @@ export default function Table ({schema, data}) {
   const [headerState, setHeaderState] = React.useState({})
 
   const alterHeaderState = (attr, value) => {
-    const state = headerState
-    state[attr] = value
-    setHeaderState(state)
+    headerState[attr] = value
+    setHeaderState(headerState)
   }
 
   const filterItems = (e) => {
-    const {dataset} = e.target
-    const value = e.target.value
-
+    const {dataset, value} = e.target
     alterHeaderState(dataset.attribute, value)
 
     const resultSets = []
-    for (let attribute in headerState) {
-      const regex = new RegExp(headerState[attribute], 'i')
+    for (let attr in headerState) {
+      const regex = new RegExp(headerState[attr], 'i') // regexp because case sensitivity
       const matching = data.filter(row => {
-        return row[attribute].match(regex) 
+        return row[attr].match(regex) 
       })
       resultSets.push(matching);
     }
