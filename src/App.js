@@ -8,10 +8,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         Recordset name
-        <section className="dataButtons">
-          <button>Clear</button>
-          <button>Save</button>
-        </section>
       </header>
 
       <section className="tableSection">

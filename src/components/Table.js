@@ -1,5 +1,6 @@
 // Table.js
 import React from 'react'
+import TableControls from './TableControls'
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
@@ -55,10 +56,43 @@ export default function Table ({schema, data}) {
     return ''
   }
 
+  const clearHeader = () => {
+    setHeaderState({})
+    setfilteredItems(data)
+  }
+
+  const addRecord = () => {
+    const record = {}
+    schema.forEach(attr => {
+      if (headerState.hasOwnProperty(attr)) {
+        record[attr] = headerState[attr]
+      } else {
+        record[attr] = ''
+      }
+    })
+
+    // for now let's assume that _id is a numeric sequence similar to spreadsheet rows
+    if (record._id === '') {
+      // TODO id handling in general could be much more elegant, also perhaps save highest id for next time
+      const id = data.reduce((prev, curr, index) => {
+        prev = parseInt(prev)
+        curr = parseInt(curr._id)
+        return (curr > prev) ? curr : prev
+      }, 0)
+      record._id = id + 1
+    }
+    data.push(record)
+
+    clearHeader()
+  }
+
   return (
+    <>
+    <TableControls clearHeader={clearHeader} addRecord={addRecord} />
     <table>
       <TableHeader schema={schema} getHeaderState={getHeaderState} filterItems={filterItems} />
       <TableBody schema={schema} data={filteredItems} />
     </table>
+    </>
   )
 }

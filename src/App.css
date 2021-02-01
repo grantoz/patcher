@@ -53,3 +53,7 @@ thead > tr > td > input {
   display: block;
   width: 100%;
 }
+
+section.tableControls button {
+  margin: 10px;
+}
