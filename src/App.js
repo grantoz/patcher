@@ -7,7 +7,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Something interesting to go here
+        Recordset name
+        <section className="dataButtons">
+          <button>Clear</button>
+          <button>Save</button>
+        </section>
       </header>
 
       <section className="tableSection">

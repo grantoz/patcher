@@ -59,6 +59,6 @@ export default function Table ({schema, data}) {
     <table>
       <TableHeader schema={schema} getHeaderState={getHeaderState} filterItems={filterItems} />
       <TableBody schema={schema} data={filteredItems} />
-      </table>
+    </table>
   )
 }
