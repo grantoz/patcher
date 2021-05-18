@@ -1,14 +1,13 @@
 import './App.css';
 import sampleData from './data/sampleData';
-import Table from './components/Table'
+import Table from './components/Table';
+import Heading from './components/Heading'
 
 function App() {
   const schema = Object.keys(sampleData[0]);
   return (
     <div className="App">
-      <header className="App-header">
-        Recordset name
-      </header>
+      <Heading />
 
       <section className="tableSection">
         <Table schema={schema} data={sampleData} />

@@ -6,6 +6,15 @@ Some of my tunes can be found on [Soundcloud](https://soundcloud.com/grantoz).
 
 TODO:
 
-* saving data
-* optionally: connecting to suitable DB
-* perhaps wrapping it up in an electron app.
+* test suite
+* accessibility labels
+* name a record set using ContentEditable
+* edit cells directly using ContentEditable
+* save record set to localStorage
+* select record set from localStorage on application start
+* styling
+* optionally: connecting to suitable DB (sqlite or lowdb)
+* optionally: wrapping it in an electron app
+
+[https://github.com/lovasoa/react-contenteditable]
+[https://www.taniarascia.com/content-editable-elements-in-javascript-react/]
