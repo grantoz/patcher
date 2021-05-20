@@ -16,5 +16,8 @@ TODO:
 * optionally: connecting to suitable DB (sqlite or lowdb)
 * optionally: wrapping it in an electron app
 
-[https://github.com/lovasoa/react-contenteditable]
-[https://www.taniarascia.com/content-editable-elements-in-javascript-react/]
+Reading List:
+
+* [https://github.com/lovasoa/react-contenteditable]
+* [https://www.taniarascia.com/content-editable-elements-in-javascript-react/]
+* [https://www.prisma.io/nextjs]

@@ -1,5 +1,10 @@
-const sampleData = [
-  {
+const sampleData = {
+  "meta": {
+    "title": "demo recordset",
+    "created_at": null,
+    "updated_at": null
+  },
+  "data": [{
     "_id": "1",
     "synth": "Zebra",
     "patch": "GO Twangle",
@@ -40,7 +45,7 @@ const sampleData = [
     "patch": "Squirrely Spiral",
     "track": "Inner Sight, Outer Space",
     "note": "drone zone"
-  }
-]
+  }]
+}
 
 export default sampleData

@@ -1,8 +1,8 @@
 import React from 'react'
 import ContentEditable from 'react-contenteditable'
 
-export default function Heading () {
-  const [text, setText] = React.useState('Demo Recordset')
+export default function Heading ({meta}) {
+  const [text, setText] = React.useState(meta.title)
 
   const handleChange = evt => {
     setText(evt.target.value);

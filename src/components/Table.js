@@ -4,7 +4,7 @@ import TableControls from './TableControls'
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
-export default function Table ({schema, data}) {
+export default function Table ({schema, data, save}) {
   // it's ok to pass [] here, later perhaps show first page of DB results
   const [filteredItems, setfilteredItems] = React.useState(data)
   const [headerState, setHeaderState] = React.useState({})
@@ -63,6 +63,7 @@ export default function Table ({schema, data}) {
 
   const addRecord = () => {
     const record = {}
+    // populate the header row data into a new record
     schema.forEach(attr => {
       if (headerState.hasOwnProperty(attr)) {
         record[attr] = headerState[attr]
@@ -86,12 +87,20 @@ export default function Table ({schema, data}) {
     clearHeader()
   }
 
+  const setCell = (cell, val) => {
+    console.log(cell, val);
+    const [id, key] = cell.split('_') // TODO deal with schema names that have underscores :thinking:
+
+    // if IDs are integer sequences, it's easy // TODO think about IDs vs rows vs data indexes etc
+    data[id -1][key] = val
+  }
+
   return (
     <>
-    <TableControls clearHeader={clearHeader} addRecord={addRecord} />
+    <TableControls clearHeader={clearHeader} addRecord={addRecord} save={save}/>
     <table>
       <TableHeader schema={schema} getHeaderState={getHeaderState} filterItems={filterItems} />
-      <TableBody schema={schema} data={filteredItems} />
+      <TableBody schema={schema} data={filteredItems} setCell={setCell} />
     </table>
     </>
   )
