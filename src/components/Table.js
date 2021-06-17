@@ -4,7 +4,7 @@ import TableControls from './TableControls'
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 
-export default function Table ({schema, data, save}) {
+export default function Table ({schema, data, save, load}) {
   // it's ok to pass [] here, later perhaps show first page of DB results
   const [filteredItems, setfilteredItems] = React.useState(data)
   const [headerState, setHeaderState] = React.useState({})
@@ -80,7 +80,7 @@ export default function Table ({schema, data, save}) {
         curr = parseInt(curr._id)
         return (curr > prev) ? curr : prev
       }, 0)
-      record._id = id + 1
+      record._id = String(id + 1) // needs to be a string to keep contenteditable happy in the table cell
     }
     data.push(record)
 
@@ -97,7 +97,7 @@ export default function Table ({schema, data, save}) {
 
   return (
     <>
-    <TableControls clearHeader={clearHeader} addRecord={addRecord} save={save}/>
+    <TableControls clearHeader={clearHeader} addRecord={addRecord} save={save} load={load}/>
     <table>
       <TableHeader schema={schema} getHeaderState={getHeaderState} filterItems={filterItems} />
       <TableBody schema={schema} data={filteredItems} setCell={setCell} />

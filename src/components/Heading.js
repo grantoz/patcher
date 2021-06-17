@@ -6,15 +6,17 @@ export default function Heading ({meta}) {
 
   const handleChange = evt => {
     setText(evt.target.value);
+    meta.title = evt.target.value;
   };
 
-  const handleBlur = () => {
+  const handleBlur = (evt) => {
+    // handleChange(evt)
     // needs to be here, so as to make react-contenteditable work with react hooks
   };
 
   return (
     <header data-testid="recordset-heading" className="App-header">
-      <ContentEditable data-testid="recordset-heading-text"  html={text} onBlur={handleBlur} onChange={handleChange} />
+      <ContentEditable data-testid="recordset-heading-text" html={text} onBlur={handleBlur} onChange={handleChange} />
     </header>
   )
 }
